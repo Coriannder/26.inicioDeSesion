@@ -10,6 +10,8 @@ import { webAuth, apiAuth } from '../src/auth/index.js'
 import session from 'express-session'
 import MongoStore from 'connect-mongo'
 
+import { createHash } from './utils/crypt.js'
+
 
 
 const app = express()
@@ -47,7 +49,8 @@ app.get('/login' , (req, res) => {
 })
 
 app.post('/login', (req, res) => {
-    req.session.nombre = req.body.name
+    req.session.email = req.body.email
+    req.session.password = createHash(req.body.password)
     console.log(req.session)
     res.redirect('/index')
 })
@@ -60,6 +63,10 @@ app.get('/logout', apiAuth , (req, res) => {
     console.log('Estas en ruta /logout')
     res.render('pages/logout', { nombre : req.session.nombre})
     req.session.destroy()
+})
+
+app.get('/register', (req, res) => {
+    res.render('pages/register')
 })
 
 /* app.get('/index/logout', apiAuth , (req, res) => {
