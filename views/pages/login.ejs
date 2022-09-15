@@ -7,11 +7,12 @@
     <body>
     <div class="container mt-4 mb-4" style="width: 500px;">
         <h2>Login de usuario</h2>
+        <h3> <%= subtitleLogin %> </h3>
         <form class="mt-4" action="/login" method="post">
 
             <div class="mb-3">
                 <label for="name" class="form-label">Ingrese email</label>
-                <input type="email" class="form-control" name="email" id="email" required>
+                <input type="email" class="form-control" name="username" id="email" required>
             </div>
 
             <div class="mb-3">

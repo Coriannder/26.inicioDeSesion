@@ -2,6 +2,7 @@
 let productosDao
 let carritosDao = ''
 let mensajesDao
+let usuariosDao
 
 switch (/* process.env.PERS */'mongoDb') {
 
@@ -12,9 +13,12 @@ switch (/* process.env.PERS */'mongoDb') {
         const { default: CarritoDaoMongoDb } = await import ('./carritos/CarritosDaoMongoDb.js')
         carritosDao = new CarritoDaoMongoDb()
 
-        const { default: MensajesDaoMongoDb } = await import ('./mensajes/mensajesDaoMongoDb.js')
+        const { default: MensajesDaoMongoDb } = await import ('./mensajes/MensajesDaoMongoDb.js')
         mensajesDao = new MensajesDaoMongoDb()
+
+        const { default: UsuariosDaoMongoDb } = await import ('./usuarios/UsuariosDaoMongoDb.js')
+        usuariosDao = new UsuariosDaoMongoDb()
 }
 
-export {productosDao, carritosDao, mensajesDao }
+export {productosDao, carritosDao, mensajesDao, usuariosDao }
 
